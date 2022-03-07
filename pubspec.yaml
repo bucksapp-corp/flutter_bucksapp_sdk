@@ -1,6 +1,6 @@
 name: flutter_bucksapp_sdk
 description: A SDK to implement bucksapp in your app.
-version: 0.0.2
+version: 0.0.3
 homepage: "https://github.com/bucksapp-corp/flutter_bucksapp_sdk"
 
 environment:
