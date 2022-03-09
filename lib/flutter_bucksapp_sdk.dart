@@ -3,9 +3,12 @@ library flutter_bucksapp_sdk;
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bucksapp_sdk/helpers.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:http/http.dart' as http;
+import 'package:package_info_plus/package_info_plus.dart';
 
 class Bucksapp extends StatefulWidget {
   const Bucksapp({
@@ -26,14 +29,24 @@ class _BucksappState extends State<Bucksapp> {
   final CookieManager cookieManager = CookieManager.instance();
 
   Future<String?> getToken() async {
+    final info = await PackageInfo.fromPlatform();
+
     final response = await http.post(
         Uri.parse('https://api.dev.bucksapp.com/api/fi/v1/authenticate'),
         headers: {
           'jwt_aud': 'development',
           'Content-Type': 'application/json',
-          'X-API-KEY': widget.apiKey
+          'X-API-KEY': widget.apiKey,
+          'platform': defaultTargetPlatform.name,
+          'app_name': info.appName,
+          'package_name': info.packageName,
+          'version': info.version,
+          'build_number': info.buildNumber,
+          'build_signature': info.buildSignature
         },
         body: json.encode({"user": widget.uuid}));
+
+    logResponse(response);
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body)?["token"];
