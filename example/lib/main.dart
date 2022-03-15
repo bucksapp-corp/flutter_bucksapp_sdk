@@ -244,6 +244,7 @@ class Simulator extends StatelessWidget {
                   child: Bucksapp(
                     apiKey: dotenv.get('API_KEY', fallback: ''),
                     uuid: dotenv.get('UUID', fallback: ''),
+                    environment: dotenv.get('ENV', fallback: ''),
                   )),
             ),
           );

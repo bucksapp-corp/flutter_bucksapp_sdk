@@ -15,10 +15,12 @@ class Bucksapp extends StatefulWidget {
     Key? key,
     required this.apiKey,
     required this.uuid,
+    required this.environment,
   }) : super(key: key);
 
   final String apiKey;
   final String uuid;
+  final String environment;
 
   @override
   State<Bucksapp> createState() => _BucksappState();
@@ -31,10 +33,22 @@ class _BucksappState extends State<Bucksapp> {
   Future<String?> getToken() async {
     final info = await PackageInfo.fromPlatform();
 
-    final response = await http.post(
-        Uri.parse('https://api.dev.bucksapp.com/api/fi/v1/authenticate'),
+    Uri uri;
+    switch (widget.environment) {
+      case 'staging':
+        uri = Uri.parse('https://api.stg.bucksapp.com/api/fi/v1/authenticate');
+        break;
+      case 'production':
+        uri = Uri.parse('https://api.prd.bucksapp.com/api/fi/v1/authenticate');
+        break;
+      default:
+        uri = Uri.parse('https://api.dev.bucksapp.com/api/fi/v1/authenticate');
+        break;
+    }
+
+    final response = await http.post(uri,
         headers: {
-          'jwt_aud': 'development',
+          'jwt_aud': widget.environment,
           'Content-Type': 'application/json',
           'X-API-KEY': widget.apiKey,
           'platform': defaultTargetPlatform.name,

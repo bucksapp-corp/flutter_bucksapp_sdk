@@ -27,10 +27,12 @@ dependencies:
 
 * `apiKey` is an key provided to access the service
 * `uuid` is the id of the user for consulting his data.
+* `environment` is the environment of the implementation.
 
 ```dart
 Bucksapp(
     apiKey: '12TvAswlCh03Qhj5uxiM7w',
     uuid: '1c111bf4-7646-4b84-bc4c-4426fb596a87',
+    environment: 'development'
 )
 ```
