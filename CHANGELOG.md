@@ -20,3 +20,7 @@
 ## 0.0.5
 
 * Added the environment setupo for the bucksapp implementation
+
+## 0.0.6
+
+* Updated the README.md

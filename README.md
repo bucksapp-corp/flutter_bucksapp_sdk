@@ -31,8 +31,8 @@ dependencies:
 
 ```dart
 Bucksapp(
-    apiKey: '12TvAswlCh03Qhj5uxiM7w',
-    uuid: '1c111bf4-7646-4b84-bc4c-4426fb596a87',
+    apiKey: '<API_KEY>',
+    uuid: '<UUID>',
     environment: 'development'
 )
 ```
