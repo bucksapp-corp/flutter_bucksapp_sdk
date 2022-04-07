@@ -24,3 +24,7 @@
 ## 0.0.6
 
 * Updated the README.md
+
+## 0.0.7
+
+* Speed up the sdk.
