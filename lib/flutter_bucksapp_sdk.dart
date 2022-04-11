@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bucksapp_sdk/helpers.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:http/http.dart' as http;
-import 'package:package_info_plus/package_info_plus.dart';
 
 class Bucksapp extends StatefulWidget {
   const Bucksapp({
@@ -31,8 +30,6 @@ class _BucksappState extends State<Bucksapp> {
   final CookieManager cookieManager = CookieManager.instance();
 
   Future<String?> getToken() async {
-    final info = await PackageInfo.fromPlatform();
-
     Uri uri;
     switch (widget.environment) {
       case 'staging':
@@ -52,11 +49,6 @@ class _BucksappState extends State<Bucksapp> {
           'Content-Type': 'application/json',
           'X-API-KEY': widget.apiKey,
           'platform': defaultTargetPlatform.name,
-          'app_name': info.appName,
-          'package_name': info.packageName,
-          'version': info.version,
-          'build_number': info.buildNumber,
-          'build_signature': info.buildSignature
         },
         body: json.encode({"user": widget.uuid}));
 
