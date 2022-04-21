@@ -63,16 +63,28 @@ class _BucksappState extends State<Bucksapp> {
 
   @override
   Widget build(BuildContext context) {
+    Uri uriApp;
+    switch (widget.environment) {
+      case 'staging':
+        uriApp = Uri.parse('https://app.stg.bucksapp.com');
+        break;
+      case 'production':
+        uriApp = Uri.parse('https://app.prd.bucksapp.com');
+        break;
+      default:
+        uriApp = Uri.parse('https://app.dev.bucksapp.com');
+        break;
+    }
     return FutureBuilder<String?>(
         future: getToken(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             cookieManager.setCookie(
-                url: Uri.parse('https://app.dev.bucksapp.com'),
+                url: uriApp,
                 name: "token",
                 value: snapshot.data!);
             cookieManager.setCookie(
-                url: Uri.parse('https://app.dev.bucksapp.com'),
+                url: uriApp,
                 name: "NEXT_LOCALE",
                 value: "es");
 
@@ -81,7 +93,7 @@ class _BucksappState extends State<Bucksapp> {
                 android: AndroidInAppWebViewOptions(useHybridComposition: true),
               ),
               initialUrlRequest: URLRequest(
-                url: Uri.parse('https://app.dev.bucksapp.com'),
+                url: uriApp,
                 method: 'GET',
                 headers: {
                   HttpHeaders.authorizationHeader: 'Bearer ${snapshot.data}'

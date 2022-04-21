@@ -28,3 +28,7 @@
 ## 0.0.7
 
 * Speed up the sdk.
+
+## 0.0.8
+
+* Fix URL for staging and production environments.
