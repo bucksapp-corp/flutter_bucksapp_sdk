@@ -32,6 +32,9 @@ class _BucksappState extends State<Bucksapp> {
   Future<String?> getToken() async {
     Uri uri;
     switch (widget.environment) {
+      case 'sandbox':
+        uri = Uri.parse('https://api.sbx.bucksapp.com/api/fi/v1/authenticate');
+        break;
       case 'staging':
         uri = Uri.parse('https://api.stg.bucksapp.com/api/fi/v1/authenticate');
         break;
@@ -65,6 +68,9 @@ class _BucksappState extends State<Bucksapp> {
   Widget build(BuildContext context) {
     Uri uriApp;
     switch (widget.environment) {
+      case 'sandbox':
+        uriApp = Uri.parse('https://app.sbx.bucksapp.com');
+        break;
       case 'staging':
         uriApp = Uri.parse('https://app.stg.bucksapp.com');
         break;
@@ -80,13 +86,9 @@ class _BucksappState extends State<Bucksapp> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             cookieManager.setCookie(
-                url: uriApp,
-                name: "token",
-                value: snapshot.data!);
+                url: uriApp, name: "token", value: snapshot.data!);
             cookieManager.setCookie(
-                url: uriApp,
-                name: "NEXT_LOCALE",
-                value: "es");
+                url: uriApp, name: "NEXT_LOCALE", value: "es");
 
             return InAppWebView(
               initialOptions: InAppWebViewGroupOptions(

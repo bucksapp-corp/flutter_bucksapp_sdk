@@ -32,3 +32,7 @@
 ## 0.0.8
 
 * Fix URL for staging and production environments.
+
+## 0.0.9
+
+* Added env sandbox.
