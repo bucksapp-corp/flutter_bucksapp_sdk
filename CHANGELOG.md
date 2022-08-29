@@ -36,3 +36,7 @@
 ## 0.0.9
 
 * Added env sandbox.
+
+## 0.0.10
+
+* Update dependencies
