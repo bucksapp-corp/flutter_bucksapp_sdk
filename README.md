@@ -18,7 +18,7 @@ Add the following line to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_bucksapp_sdk: ^0.0.2
+  flutter_bucksapp_sdk: ^0.0.10
 ```
 
 ### Basic setup
