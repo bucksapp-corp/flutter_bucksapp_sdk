@@ -15,11 +15,13 @@ class Bucksapp extends StatefulWidget {
     required this.apiKey,
     required this.uuid,
     required this.environment,
+    required this.language, // "en" or "es"
   }) : super(key: key);
 
   final String apiKey;
   final String uuid;
   final String environment;
+  final String language;
 
   @override
   State<Bucksapp> createState() => _BucksappState();
@@ -88,7 +90,7 @@ class _BucksappState extends State<Bucksapp> {
             cookieManager.setCookie(
                 url: uriApp, name: "token", value: snapshot.data!);
             cookieManager.setCookie(
-                url: uriApp, name: "NEXT_LOCALE", value: "es");
+                url: uriApp, name: "NEXT_LOCALE", value: widget.language);
 
             return InAppWebView(
               initialOptions: InAppWebViewGroupOptions(

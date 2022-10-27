@@ -40,3 +40,8 @@
 ## 0.0.10
 
 * Update dependencies
+
+## 0.0.11
+
+* Added the field for language
+
